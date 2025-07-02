@@ -11,6 +11,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+<<<<<<< HEAD
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "superlists.settings")
+=======
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'superlists.settings')
+>>>>>>> 7f777d47fb42514aeab1dc28db82375ee44209e0
 
 application = get_wsgi_application()

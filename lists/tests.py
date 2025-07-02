@@ -1,18 +1,35 @@
 from django.test import TestCase
+<<<<<<< HEAD
 
 from lists.models import Item, List
 
 
+=======
+from lists.models import Item, List
+
+>>>>>>> 7f777d47fb42514aeab1dc28db82375ee44209e0
 class HomePageTest(TestCase):
     def test_uses_home_template(self):
         response = self.client.get("/")
         self.assertTemplateUsed(response, "home.html")
 
+<<<<<<< HEAD
     def test_renders_input_form(self):
         response = self.client.get("/")
         self.assertContains(response, '<form method="POST" action="/lists/new">')
         self.assertContains(response, '<input name="item_text"')
 
+=======
+    def test_renders_homepage_input_form(self):
+        response = self.client.get("/")
+        self.assertContains(response, '<form method="POST" action="/lists/new">')
+
+    def test_render_input_form(self):
+        response = self.client.get("/")
+        self.assertContains(response, '<form method="POST" action="/lists/new">')
+        self.assertContains(response, '<input name="item_text"')
+        self.assertContains(response, '<input name="item_text'"")
+>>>>>>> 7f777d47fb42514aeab1dc28db82375ee44209e0
 
 class NewListTest(TestCase):
     def test_can_save_a_POST_request(self):
@@ -23,6 +40,7 @@ class NewListTest(TestCase):
 
     def test_redirects_after_POST(self):
         response = self.client.post("/lists/new", data={"item_text": "A new list item"})
+<<<<<<< HEAD
         new_list = List.objects.get()
         self.assertRedirects(response, f"/lists/{new_list.id}/")
 
@@ -82,11 +100,39 @@ class NewItemTest(TestCase):
 
         self.assertRedirects(response, f"/lists/{correct_list.id}/")
 
+=======
+        self.assertRedirects(response, "/lists/the-only-list-in-the-world/")
+
+class ListViewTest(TestCase):
+    def test_uses_list_template(self):
+        response = self.client.get("/lists/the-only-list-in-the-world/")
+        self.assertTemplateUsed(response, "lists.html")
+
+
+    def test_renders_input_form(self):
+        response = self.client.get("/lists/the-only-list-in-the-world/")
+        self.assertContains(response, '<form method="POST" action="/lists/new">')
+        self.assertContains(response, '<input name="item_text"')
+
+    def test_displays_all_list_items(self):
+        mylist = List.objects.create()
+        Item.objects.create(text="itemey 1", list=mylist)
+        Item.objects.create(text="itemey 2", list=mylist)
+
+        response = self.client.get("/lists/the-only-list-in-the-world/")
+
+        self.assertContains(response, "itemey 1")
+        self.assertContains(response, "itemey 2")
+>>>>>>> 7f777d47fb42514aeab1dc28db82375ee44209e0
 
 class ListAndItemModelsTest(TestCase):
     def test_saving_and_retrieving_items(self):
         mylist = List()
         mylist.save()
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7f777d47fb42514aeab1dc28db82375ee44209e0
         first_item = Item()
         first_item.text = "The first (ever) list item"
         first_item.list = mylist

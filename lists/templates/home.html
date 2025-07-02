@@ -1,5 +1,6 @@
 <html>
   <head>
+<<<<<<< HEAD
     <title>To-Do lists</title>
   </head>
   <body>
@@ -10,3 +11,14 @@
     </form>
   </body>
 </html>
+=======
+    <title>Start a To-Do list</title>
+  </head>
+<body>
+  <h1>Start a To-Do list</h1>
+  <form method="POST" action="/lists/new">
+    <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
+    {% csrf_token %}
+  </form>
+</body>
+>>>>>>> 7f777d47fb42514aeab1dc28db82375ee44209e0
